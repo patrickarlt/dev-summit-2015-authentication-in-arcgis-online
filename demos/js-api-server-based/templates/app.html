@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Sign In</title>
+
+  <link rel="stylesheet" href="//js.arcgis.com/3.11/esri/css/esri.css">
+</head>
+<body>
+
+  <pre><code id="profile"></code></pre>
+  <pre><code id="credentials"></code></pre>
+
+  <script src="//jsdev.arcgis.com/3.12/"></script>
+
+  <script>
+    require([
+      "esri/IdentityManager",
+      "esri/request",
+    ], function(EsriId, request) {
+      var refreshPeriod = 25 * 60 * 1000 // 25 minutes (could use token.expires, but it's always in 30 minutes)
+      // var refreshPeriod = 2000; // uncomment to see a faster refresh
+      var token = {{{token}}}; // raw dump of the server generated token
+      var profileEl = document.getElementById("profile");
+      var credentialEl = document.getElementById("credentials");
+
+      EsriId.registerToken(token); // register the short lived token from the server with the identity manager
+
+      setTimeout(refreshToken, refreshPeriod); // refresh the token a few minutes before it expires
+
+      // init function to check the sign in status then show profile and credential information
+      function init(){
+        EsriId.checkSignInStatus(token.server).then(showProfile).otherwise(removeProfile);
+      }
+
+      // function to show a users profile and current credentials
+      function showProfile(credential) {
+        request({
+          url: "http://www.arcgis.com/sharing/rest/portals/self",
+          content: {
+            f: "json"
+          }
+        }).then(function(response){
+          credentialEl.innerText = JSON.stringify(credential.toJson(), null, "  ");
+          profileEl.innerText = JSON.stringify(response, null, "  ");
+        }, function(error){
+          console.log(error);
+        });
+      }
+
+      // function to remove profile and credential information
+      function removeProfile(){
+        credentialEl.innerText = "";
+        profileEl.innerText = "";
+      }
+
+      // get a new token from the server
+      function refreshToken() {
+        request({
+          url: "/refresh"
+        }, {
+          disableIdentityLookup: true
+        }).then(function(response) {
+          EsriId.registerToken(response);
+          init();
+          setTimeout(refreshToken, refreshPeriod);
+        },function(error) {
+          console.log(error);
+        });
+      }
+
+      // start the app
+      init();
+    });
+  </script>
+</body>
+</html>

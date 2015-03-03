@@ -6,7 +6,7 @@
 
 		<title>Oauth 2.0 and ArcGIS Online Authentication</title>
 
-		<meta name="description" content="A introductory talk from the Esri International Developers Summit on starting to develop applications with ArcGIS for Developers.">
+		<meta name="description" content="Presentation on authentication in ArcGIS Online at the 2015 Esri Dev Summit.">
 		<meta name="author" content="Patrick Arlt">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -41,7 +41,87 @@
 					<h1>Authentication in ArcGIS Online</h1>
 					<h3>Patrick Arlt</h3>
 					<p>Experience Developer - ArcGIS for Developers</p>
-					<p><a href="http://twitter.com/patrickarlt">@patrickarlt</a> - <a href="http://patrickarlt.github.io/dev-summit-2015-authentication-in-arcgis-online/#/">BITLY LINK!!!!</a></p>
+					<p><a href="http://twitter.com/patrickarlt">@patrickarlt</a> - <a href="http://patrickarlt.github.io/dev-summit-2015-authentication-in-arcgis-online/#/">http://arcg.is/1BAm5cz</a></p>
+				</section>
+
+				<section>
+					<h2>What is oAuth 2.0?</h2>
+					<p>A standard for conveying authorization decisions.</p>
+					<i>I {username} authorize {app name} to do {whatever}</i>
+				</section>
+
+				<section>
+					<h2>OAuth 2.0 is not an authentication protocol</h2>
+				</section>
+
+				<section>
+					<h2>OAuth 2.0 is used <i>inside</i> of authentication protocols</h2>
+				</section>
+
+				<section>
+					<h2>A Complete System</h2>
+					<p>oAuth 2.0 +ArcGIS Online Identities = ArcGIS Online Authentication
+				</section>
+
+				<section>
+					User Logins vs App Authentication
+				</section>
+
+				<section>
+					<h2>User Logins</h2>
+					<ol>
+						<li>User authorizes applicaitom</li>
+						<li>Application can act on users behalf</li>
+						<li>Usage if any is billed to that users organization</li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Use User Logins When...</h2>
+					<ul>
+						<li>You have to work with private content</li>
+						<li>you need to create/edit content</li>
+						<li>want usage to be billed to your apps users</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Application Authentication</h2>
+					<ol>
+						<li>App exchanges credentials for token</li>
+						<li>Uses token to access premium services</li>
+						<li>Often implimented as a proxy</li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Use Application Authentication When&hellip;</h2>
+					<ul>
+						<li>You only need to work with public and premium content</li>
+						<li>You dont want your users to sign in</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Whats Changed Since Last Year?</h2>
+					<ul>
+						<li>ArcGIS Portal 10.3 now supports oAuth 2.0</li>
+						<li>1st class oAuth 2.0 support in the JS API</li>
+						<li>Hosted proxies are available for some premium services</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Stop! Demo Time!</h1>
+				</section>
+
+				<section>
+					<h1>Thanks!</h1>
+					<p>Twitter: <a href="http://twitter.com/patrickarlt">@patrickarlt</a></p>
+					<p>Slides:<a href="http://patrickarlt.github.io/dev-summit-2015-authentication-in-arcgis-online/#/">http://arcg.is/1BAm5cz</a></p>
+					<div class="center-text">
+						<img src="esri-logo.png" alt="Esri" width="280" height="118" >
+					</div>
 				</section>
 
 		</div>
@@ -69,8 +149,8 @@
 				transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
 
 				// Parallax scrolling
-				// parallaxBackgroundImage: '/background.jpg',
-				// parallaxBackgroundSize: '2193px 1334px',
+				parallaxBackgroundImage: '/background.jpg',
+				parallaxBackgroundSize: '2193px 1334px',
 
 				// Optional libraries used to extend on reveal.js
 				dependencies: [

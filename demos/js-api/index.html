@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>ArcGIS Online Items</title>
+  </head>
+    <style>
+      .hide {
+        display: none;
+      }
+    </style>
+  <body>
+  <button id="sign-in" class="hide">Sign In</button>
+  <button id="sign-out" class="hide">Sign Out</button>
+
+  <pre><code id="profile"></code></pre>
+  <pre><code id="credentials"></code></pre>
+
+  <script src="//js.arcgis.com/3.12/"></script>
+  <script>
+    require([
+      "esri/arcgis/OAuthInfo",
+      "esri/IdentityManager",
+      "dojo/dom-class",
+      "esri/request"
+    ], function (OAuthInfo, EsriId, domClass, request) {
+
+      var signIn = document.getElementById("sign-in");
+      var signOut = document.getElementById("sign-out");
+      var profileEl = document.getElementById("profile");
+      var credentialEl = document.getElementById("credentials");
+
+      function showProfile(credential) {
+        request({
+          url: "http://www.arcgis.com/sharing/rest/portals/self",
+          content: {
+            f: "json"
+          }
+        }).then(function(response){
+          credentialEl.innerText = JSON.stringify(credential.toJson(), null, "  ");
+          profileEl.innerText = JSON.stringify(response, null, "  ");
+        }, function(error){
+          console.log(error);
+        });
+      }
+
+      function removeProfile(){
+        credentialEl.innerText = "";
+        profileEl.innerText = "";
+      }
+
+      function showSignIn(credential){
+        domClass.remove(signIn, "hide");
+        domClass.add(signOut, "hide");
+        return credential;
+      }
+
+      function hideSignIn(credential){
+        domClass.remove(signOut, "hide");
+        domClass.add(signIn, "hide");
+        return credential;
+      }
+
+      var info = new OAuthInfo({
+        appId: "FILL ME IN",
+        popup: true
+      });
+
+      EsriId.registerOAuthInfos([info]);
+
+      EsriId.checkSignInStatus(info.portalUrl)
+        .then(hideSignIn)
+        .then(showProfile)
+        .otherwise(function(){
+          showSignIn();
+          removeProfile();
+        });
+
+      signIn.addEventListener("click", function(){
+        EsriId.getCredential(info.portalUrl, {
+          oAuthPopupConfirmation: false
+        }).then(hideSignIn).then(showProfile);
+      });
+
+      signOut.addEventListener("click", function(){
+        EsriId.destroyCredentials();
+        window.location.reload();
+      });
+    });
+  </script>
+</body>
+</html>
