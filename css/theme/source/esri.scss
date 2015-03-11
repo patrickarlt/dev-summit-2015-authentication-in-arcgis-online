@@ -11,13 +11,17 @@
  *********************************************/
 body {
   background: #005e95;
-  background-color: #005e95; }
+  background-color: #005e95;
+   }
 
 .reveal {
-  font-family: "Avenir LT W01 35 Light", sans-serif;
+  font-family: "Avenir LT W01 65 Medium", sans-serif;
   font-size: 36px;
   font-weight: normal;
-  color: #eeeeee; }
+  color: #eeeeee;
+  background-image: url("/background.png");
+  background-size: 100% auto;
+  text-shadow: 0 0 10px rgba(0,0,0,0.25); }
 
 ::selection {
   color: white;
@@ -33,6 +37,10 @@ body {
 
 .center-text {
   text-align: center !important; }
+
+.reveal .slides>section.center-slide {
+  top: -25%;
+}
 
 .leader {
   margin-top: 1em; }
@@ -86,7 +94,7 @@ body {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #eeeeee;
-  font-family: "Avenir LT W01 35 Light", sans-serif;
+  font-family: "Avenir LT W01 65 Medium", sans-serif;
   line-height: 1.15em;
   letter-spacing: 0.02em;
   text-transform: none;
@@ -247,7 +255,7 @@ body {
   box-sizing: border-box;
   padding-left: 1em;
   padding-right: 1em;
-  font-family: "Avenir LT W01 35 Light", sans-serif;
+  font-family: "Avenir LT W01 65 Medium", sans-serif;
   letter-spacing: normal;
   text-align: left;
   vertical-align: top !important; }
