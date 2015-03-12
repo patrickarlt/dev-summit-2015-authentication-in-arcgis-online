@@ -38,7 +38,7 @@
 			<div class="slides">
 
 				<section class="left">
-					<h1>Authentication in ArcGIS Online</h1>
+					<h1>Auth in ArcGIS Online</h1>
 					<h3>Patrick Arlt</h3>
 					<p>Experience Developer - ArcGIS for Developers</p>
 					<p><a href="http://twitter.com/patrickarlt">@patrickarlt</a> - <a href="http://patrickarlt.github.io/dev-summit-2015-authentication-in-arcgis-online/#/">http://arcg.is/1BAm5cz</a></p>
@@ -55,20 +55,32 @@
 				</section>
 
 				<section class="center-slide">
-					<h2>OAuth 2.0 !== authentication protocol</h2>
+					<p><code>OAuth 2.0 !== authentication protocol</code></p>
 				</section>
 
 				<section class="center-slide">
-					<h2>OAuth 2.0 != authentication protocol</h2>
+					<p><code>OAuth 2.0 != authentication protocol</code></p>
 				</section>
 
 				<section class="center-slide">
-					<h2>OAuth 2.0 is used <i>inside</i> of authentication protocols</h2>
+					<h3>OAuth 2.0 is used <i>inside</i> of authentication protocols</h3>
+				</section>
+
+				<section class="center-slide">
+					<p>OAuth 2.0 doesn't know about your users identities, it only care about authorization</p>
+				</section>
+
+				<section class="center-slide">
+					<code>OAuth 2.0 === Authorization</code>
+				</section>
+
+				<section>
+					<code>ArcGIS Portal/Online === Identity && Access</code>
 				</section>
 
 				<section class="center-slide">
 					<h2>A Complete System</h2>
-					<p>oAuth 2.0 +ArcGIS Online Identities = ArcGIS Online Authentication
+					<p>oAuth 2.0 + ArcGIS Portal/Online</p>
 				</section>
 
 				<section class="center-slide">
@@ -115,13 +127,19 @@
 					<ul>
 						<li>ArcGIS Portal 10.3 now supports oAuth 2.0</li>
 						<li>1st class oAuth 2.0 support in the JS API</li>
-						<li>Hosted proxies are available for some premium services</li>
+						<li>More support for OAuth in the ArcGIS Runtimes</li>
+						<li>New ways to access premium services</li>
 						<li>Better <a href="https://developers.arcgis.com/authentication/">Authentication Docs</a></li>
 					</ul>
 				</section>
 
 				<section class="center-slide">
 					<h1>Demo Time!</h1>
+					<ul>
+						<li>Browser-based with JS API</li>
+						<li>Server-based with JS API + Hapi</li>
+						<li>App Proxies for Premium Services</li>
+					</ul>
 					<a href="https://github.com/patrickarlt/dev-summit-2015-authentication-in-arcgis-online/tree/gh-pages/demos">Demos on GitHub</a>
 				</section>
 
