@@ -10,15 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bell": "^1.3.0",
+    "bell": "^2.2.0",
     "confidence": "^1.0.0",
-    "good": "^4.0.0",
-    "good-console": "^2.0.1",
+    "good": "^5.1.2",
+    "good-console": "^4.1.0",
     "handlebars": "^3.0.0",
-    "hapi": "^7.5.2",
-    "hapi-auth-cookie": "^1.4.0",
-    "hoek": "^2.9.0",
-    "joi": "^4.8.1",
-    "request": "^2.48.0"
+    "hapi": "^8.3.1",
+    "hapi-auth-cookie": "^2.0.0",
+    "hoek": "^2.11.0",
+    "joi": "^6.0.8",
+    "request": "^2.53.0"
   }
 }

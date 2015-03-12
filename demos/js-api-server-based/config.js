@@ -1,8 +1,8 @@
 var Confidence = require('confidence');
 
 var store = new Confidence.Store({
-  clientId: 'FILL ME IN',
-  clientSecret: 'FILL ME IN',
+  clientId: 'y3w5YlMgyA90iTpK',
+  clientSecret: '662371a58acf4110b7784c9a4dce9f07',
   redirectUrl: '/auth/arcgis',
   secretKey: 'foo', // used to encrypt the cookie
   secure: false, // enable in production for https

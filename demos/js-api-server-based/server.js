@@ -1,9 +1,11 @@
 var Hapi = require('hapi');
 var Hoek = require('hoek');
-var config = require('./config.js');
 var path = require('path');
 var request = require('request');
-var server = new Hapi.Server(3000);
+
+var config = require('./config.js');
+var server = new Hapi.Server();
+server.connection({ port: 3000 });
 
 // configure a folder of templates
 server.views({
@@ -17,11 +19,11 @@ server.views({
 // * bell for the OAuth 2.0 workflow
 // * hapi-auth-cooke for persisting auth in cookies
 // * good for logging
-server.pack.register([
-  { plugin:require('bell') },
-  { plugin:require('hapi-auth-cookie') },
+server.register([
+  { register:require('bell') },
+  { register:require('hapi-auth-cookie') },
   {
-    plugin: require('good'),
+    register: require('good'),
     options: {
       reporters: [{
         reporter: require('good-console'),
@@ -40,7 +42,8 @@ server.pack.register([
 // my default this is an in-memory cache which means that all sessions
 // will be cleared when your server is killed. Ideally this should be
 // persisted my configurng the server.cache option http://hapijs.com/api#server-options
-var sessions = server.cache('sessions', {
+var sessions = server.cache({
+  segment: "sessions",
   expiresIn: (14 * 24 * 60 * 60 * 1000) - (5 * 60 * 1000) // by default 2 weeks - 5 minutes
 });
 
@@ -217,7 +220,7 @@ server.route({
       credentials: (request.auth.isAuthenticated) ? request.auth.credentials: null
     }, null, 2);
 
-    reply('<pre>' + Hoek.escapeHtml(status) + '</pre>');
+    reply('<a href="/sign-in">Sign In</a><br><pre>' + Hoek.escapeHtml(status) + '</pre>');
   }
 });
 
